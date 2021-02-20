@@ -1,0 +1,11 @@
+#!/bin/python3
+import sys
+
+def factorial(n):
+    f = 1
+    for i in range(1, n+1):
+        f *= i
+    return f
+
+for line in sys.stdin:
+    print(str(factorial(int(line))))
