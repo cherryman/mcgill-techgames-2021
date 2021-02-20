@@ -47,19 +47,30 @@ let rec sprinkle l =
     | x::xs -> aux [[x]] xs
 ;;
 
-
 let rec countNodes (t : 'a tree) : int = 
-  raise NotImplemented
+  match t with
+  | Node (_, c) -> 1 + (List.fold_left (+) 0 (List.map countNodes c));
 ;;
 
 
 let rec ironOut (t: int tree) : int list list = 
-  raise NotImplemented
+  match t with
+  | Node (x, []) -> [[x]]
+  | Node (x, c) -> List.map (fun l -> [x]@l)
+                     (List.concat (List.map ironOut c))
+;;
+
+let rec fib' lst a b max = if a+b >= max then
+    lst@[a; b; a+b]
+  else
+    fib' (lst@[a]) b (a+b) max 
 ;;
 
 
 let fib max = 
-  raise NotImplemented
+  match max with
+  | 0 -> []
+  | _ -> fib' [] 1 1 max
 ;;
 
 let pascal max = 
